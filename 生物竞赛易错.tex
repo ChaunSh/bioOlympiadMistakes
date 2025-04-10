@@ -1,0 +1,167 @@
+\documentclass[b5paper,zihao=-4]{ctexbook}
+\setmainfont{Times New Roman}
+\setCJKmainfont[BoldFont=方正兰亭黑_GBK, ItalicFont=方正楷体_GBK]{方正书宋_GBK}
+\makeatletter
+
+% 无上标的 \@makefnmark
+\def\nosuper@makefnmark{\hbox{\normalfont\@thefnmark\space}}
+
+% 补丁
+\usepackage{etoolbox}
+\patchcmd\@makefntext{\@makefnmark}{\nosuper@makefnmark}{}{}
+
+\usepackage{xunicode-addon}
+\newfontfamily\fnmarkfont{ipam.ttf}
+\renewcommand\thefootnote{\hspace{-0.1em}{\footnotesize\fnmarkfont\textcircled{\arabic{footnote}}}}
+\makeatother
+
+\usepackage[left=1.27cm,right=1.27cm,top=2cm,bottom=2cm,headheight=15.0638pt]{geometry}
+\usepackage{makeidx}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{graphicx}
+\graphicspath{{./Pics/}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\usepackage{array}
+\usepackage{lscape}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,RE]{\rightmark}
+\fancyhead[LE,LO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+\fancyhead[CO,CE]{\hyperref[mulu]{生物竞赛提分秘籍}}
+\renewcommand{\headrulewidth}{0.1mm}
+\renewcommand{\footrulewidth}{0mm}
+
+\fancypagestyle{plain}
+{\fancyhf{}
+	\fancyfoot[LE,RO]{\thepage}
+	\renewcommand{\headrulewidth}{0mm}
+	\renewcommand{\footrulewidth}{0mm}}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pifont}
+\usepackage{xpinyin}
+\xpinyinsetup{font={\fontspec{GB Pinyinok-B}},ratio=0.5}
+\usepackage{chemfig}
+\usepackage[version=4]{mhchem}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt, partopsep=0pt, parsep=0pt}
+\setlist[description]{labelindent=2em,itemsep=0pt, partopsep=0pt, parsep=0pt,style=unboxed,leftmargin=0em}
+\setlist[itemize]{itemsep=0pt, partopsep=0pt, parsep=0pt}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\titleformat{\paragraph}
+{\normalfont\bfseries\filright} % 设置段落为加粗
+{}{0.5em}{\hspace{2em}} % 设置段落编号后缩进1em
+
+\titleformat{\subparagraph}
+{\normalfont\CJKfontspec{方正小标宋简体}\filright} % 设置子段落为不加粗
+{}{0.5em}{} % 设置子段落编号后缩进1em
+\usepackage{nicematrix}
+\usepackage{upgreek}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+% 定义“巧记”箱子，支持自定义标题
+\newtcolorbox{qj}[1][]{
+	colback=yellow!10, % 背景颜色
+	colframe=yellow!50!black,
+	breakable,enhanced jigsaw,% 边框颜色
+	fonttitle=\bfseries, % 标题字体
+	title={巧记#1}, % 箱子标题为传入的参数，默认为空
+}
+
+% 定义“小故事”箱子，支持自定义标题
+\newtcolorbox{gs}[1][]{
+	colback=cyan!10, % 背景颜色
+	colframe=cyan!50!black, % 边框颜色
+	fonttitle=\bfseries, % 标题字体
+	breakable,enhanced jigsaw,
+	title={小故事#1}, % 箱子标题为传入的参数，默认为空
+}
+
+\newtcolorbox{tx}[1][]{
+	colback=red!10, % 背景颜色
+	colframe=red!50!black, % 边框颜色
+	fonttitle=\bfseries, % 标题字体
+	breakable,enhanced jigsaw,
+	title={提醒#1}, % 箱子标题为传入的参数，默认为空
+}
+
+\usepackage{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\setmonofont{Consolas}
+\usepackage{forest}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{hyperref}
+
+\forestset{
+	forest scheme/.style={
+		for tree={
+			inner sep=0pt,
+			outer sep=0pt,
+			fit=band,
+			child anchor=west,
+			parent anchor=east,
+			grow'=0,
+			anchor=west,
+			align=left,
+			if n=1{
+				edge path'={(!u1.west) -- (!ul.west);}
+			}{no edge},
+			edge={decorate, decoration={brace,amplitude=1.5mm,mirror,raise=2mm}},
+		},
+	}
+}
+
+\newcommand{\sy}[1]{{\color[RGB]{150,78,21}#1\index{#1}}}
+\newcommand{\zhongdian}[1]{{\color{blue}#1}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{X}
+\renewcommand{\figureautorefname}{图}
+\renewcommand{\tableautorefname}{表}
+
+\title{\fontsize{40}{40} \hyperref[mulu]{\textbf{生物竞赛易错}}}
+\date{编译日期：\today}
+\author{}
+
+\makeindex
+\begin{document}
+	\frontmatter
+	\maketitle
+	\tableofcontents
+	\label{mulu}
+
+	\mainmatter
+	\section{结构生物化学}
+	\section{代谢生物化学}
+	\section{分子生物学}
+	\section{细胞生物学}
+	\section{微生物学}
+	\section{生物技术}
+
+	\section{植物形态解剖}
+	\section{植物分类学}
+	\section{植物生理学}
+
+	\section{无脊椎动物学}
+	\section{脊椎动物学}
+	\section{动物生理学}
+	\section{生态学}
+	\section{动物行为学}
+
+	\section{遗传学}
+	\section{进化生物学}
+	\section{生物信息和统计}
+
+\end{document}
